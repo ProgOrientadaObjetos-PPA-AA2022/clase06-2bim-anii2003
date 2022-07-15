@@ -46,11 +46,11 @@ public class Enlace {
   
         try{  
             establecerConexion();
-            Statement statement = obtenerConexion().createStatement();
+            Statement statement = obtenerConexion().createStatement(); // para ejecutar codigo sql
             String data = String.format("INSERT INTO Ciudad (nombre, poblacion) "
                     + "values ('%s', %d)", ciudad.obtenerNombre(), 
                     ciudad.obtenerPoblacion());
-            statement.executeUpdate(data);
+            statement.executeUpdate(data); // Para guardar información
             obtenerConexion().close();
         } catch (SQLException e) {  
              System.out.println("Exception: insertarCiudad");
@@ -63,12 +63,13 @@ public class Enlace {
         ArrayList<Ciudad> lista = new ArrayList<>();
         try{  
             establecerConexion();
-            Statement statement = obtenerConexion().createStatement();
-            String data = "Select * from Ciudad;";
+            Statement statement = obtenerConexion().createStatement(); 
+            String data = "Select * from Ciudad;"; // Hola mundo en SQLite
+            // Obtener todos los registros de la tabla que sean ciudades
             
-            ResultSet rs = statement.executeQuery(data);
-            while(rs.next()){
-                Ciudad miCiudad = new Ciudad(rs.getString("nombre"),
+            ResultSet rs = statement.executeQuery(data); // Devuelve una consulta
+            while(rs.next()){ // Itera hasta que encuentra información en la estructura
+                Ciudad miCiudad = new Ciudad(rs.getString("nombre"), // nombre hace referencia al atributo de la tabla
                 rs.getInt("poblacion"));
                 lista.add(miCiudad);
             }

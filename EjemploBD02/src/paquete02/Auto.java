@@ -28,6 +28,13 @@ public class Auto {
     public double obtenerValorMatricula(){
         return valorMatricula;
     }
-    
+
+    public String toString(){
+        String cadena = String.format("Placa: %s\n"
+                + "Valor matrícula: %.2f\n",
+                placa,
+                valorMatricula);
+        return cadena;
+    }
     
 }
